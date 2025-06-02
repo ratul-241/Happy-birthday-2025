@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday, Wifeyy</title>
+  <style>
+    @media (max-width: 600px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  p {
+    font-size: 1em;
+    padding: 0 10px;
+  }
+
+  .photos img {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .popup {
+    padding: 20px 15px;
+  }
+}
+
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #fbd3e9, #bb377d);
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .container {
+      padding: 50px 20px;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    p {
+      font-size: 1.3em;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      line-height: 1.6;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    .heart {
+      font-size: 3rem;
+      color: #ff6ec4;
+      animation: beat 1s infinite alternate;
+    }
+
+    @keyframes beat {
+      from { transform: scale(1); }
+      to { transform: scale(1.2); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .button {
+      background: #fff;
+      color: #bb377d;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .button:hover {
+      background: #bb377d;
+      color: #fff;
+    }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: #fff;
+      color: #333;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      z-index: 10;
+      transition: transform 0.4s ease;
+      max-width: 90vw;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .popup.active {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .photos {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .photos img {
+      width: 230px;
+      border-radius: 15px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+      transition: transform 0.4s ease;
+    }
+
+    .photos img:hover {
+      transform: scale(1.05);
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #fff;
+      opacity: 0.8;
+      animation: fall 3s infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px); }
+      100% { transform: translateY(100vh); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎉 Happy Birthday, Wifeyy! 🎂</h1>
+    <p>
+      On this special day, <br>I want you to know how much you mean to me. <br>
+      Your smile lights up my world, <br>and your love completes my soul. <br>
+      Happy Birthday to the love that colors my world." 💫🎉❤️
+    </p>
+    <div class="heart">❤️</div>
+    <br />
+    <button class="button" onclick="showPopup()">Click for a Surprise 🎁</button>
+  </div>
+
+  <div class="popup" id="popup">
+    <h2>💌 A Special Note</h2>
+    <p>You're the best thing <br> that ever happened to me, Wifeyy. <br> Here's to your smile, your soul, <br> and every little thing that makes you... you. 🎈</p>
+
+    <div class="photos">
+      <img src="photo1.jpg" alt="Together">
+      <img src="photo2.png" alt="Cute Moment">
+      <img src="photo3.jpg" alt="Forever Memory">
+    </div>
+
+    <br>
+    <button class="button" onclick="hidePopup()">Close</button>
+  </div>
+<audio id="birthdayMusic" autoplay loop>
+  <source src="happy_birthday.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+
+  <script>
+    function showPopup() {
+      document.getElementById('popup').classList.add('active');
+      createConfetti();
+    }
+
+    function hidePopup() {
+      document.getElementById('popup').classList.remove('active');
+    }
+
+    function createConfetti() {
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+      }
+    }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const music = document.getElementById('birthdayMusic');
+
+    // Add one-time interaction listener to play audio
+    const playAudio = () => {
+      music.play().then(() => {
+        console.log('Music playing after interaction');
+      }).catch(err => {
+        console.log('Play failed:', err);
+      });
+      document.body.removeEventListener('click', playAudio);
+    };
+
+    // If autoplay is blocked, wait for user click
+    music.play().catch(() => {
+      document.body.addEventListener('click', playAudio);
+    });
+  });
+
+
+  </script>
+</body>
+</html>
